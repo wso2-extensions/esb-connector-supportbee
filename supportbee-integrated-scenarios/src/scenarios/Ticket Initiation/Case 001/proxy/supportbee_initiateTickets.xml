@@ -41,13 +41,13 @@
 
             <!--Checking whether user has sent at least one agentId -->
             <script language="js"><![CDATA[
-				//splitting the agentIds string by comma to access each agentId
-				var agentsArray=mc.getProperty('supportbee.agentIds').split(',');
-				var noOfAgents=agentsArray.length;		
-				
-				mc.setProperty('supportbeeAgents',agentsArray);
-				mc.setProperty('supportbeeNoOfAgents',noOfAgents);
-		]]></script>
+                //splitting the agentIds string by comma to access each agentId
+                var agentsArray=mc.getProperty('supportbee.agentIds').split(',');
+                var noOfAgents=agentsArray.length;
+
+                mc.setProperty('supportbeeAgents',agentsArray);
+                mc.setProperty('supportbeeNoOfAgents',noOfAgents);
+        ]]></script>
 
             <property name="supportbeeAgentIndex" expression="0" scope="operation"/>
 
@@ -220,11 +220,11 @@
 
                                                                 <!--Update the supportBee ticketId in the zohoCrm account in the custom field 'SupportBee Ticket ID' -->
                                                                 <script language="js"><![CDATA[
-													//constructing the xml data in order to update the case in ZohoCrm								
-													var supportBeeTicketId=mc.getProperty('supportBee.ticketId');								
-													var xmlData="<Cases> <row no=\"1\"> <FL val=\"SupportBee Ticket ID\">"+supportBeeTicketId+"</FL> </row> </Cases>";															
-													mc.setProperty('zohocrm.xmlData', xmlData);
-												]]></script>
+                                                    //constructing the xml data in order to update the case in ZohoCrm
+                                                    var supportBeeTicketId=mc.getProperty('supportBee.ticketId');
+                                                    var xmlData="<Cases> <row no=\"1\"> <FL val=\"SupportBee Ticket ID\">"+supportBeeTicketId+"</FL> </row> </Cases>";
+                                                    mc.setProperty('zohocrm.xmlData', xmlData);
+                                                ]]></script>
 
                                                                 <zohocrm.init>
                                                                     <scope>crmapi</scope>

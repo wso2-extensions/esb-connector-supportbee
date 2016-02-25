@@ -78,28 +78,28 @@
 
                                 <script language="js">
                                     <![CDATA[
-								var ticketLabels = mc.getProperty('supportbee.ticket.labels');
-								var ticketId = mc.getProperty('supportbee.ticketId');
-								if(ticketId != null && ticketId != ''){
-									var proceed = 'true';
-								} else {
-									var proceed = 'false';
-								}								
-								
-								if(ticketLabels != null && ticketLabels != ''){
-									ticketLabels = eval("(" + ticketLabels + ")");
-									if(ticketLabels.length > 0){
-										for(var i=0; i<ticketLabels.length; i++){
-											if(ticketLabels[i].name.toLowerCase() == 'enhancement'){
-												proceed = 'false';
-												break;
-											}
-										}
-									}
-								}
-								
-								mc.setProperty('ticket.proceed', proceed);
-							]]>
+                                var ticketLabels = mc.getProperty('supportbee.ticket.labels');
+                                var ticketId = mc.getProperty('supportbee.ticketId');
+                                if(ticketId != null && ticketId != ''){
+                                    var proceed = 'true';
+                                } else {
+                                    var proceed = 'false';
+                                }
+
+                                if(ticketLabels != null && ticketLabels != ''){
+                                    ticketLabels = eval("(" + ticketLabels + ")");
+                                    if(ticketLabels.length > 0){
+                                        for(var i=0; i<ticketLabels.length; i++){
+                                            if(ticketLabels[i].name.toLowerCase() == 'enhancement'){
+                                                proceed = 'false';
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                mc.setProperty('ticket.proceed', proceed);
+                            ]]>
                                 </script>
 
                                 <!-- START: Proceed to create the story, only if 'enhancement' label is not added to the ticket. -->
@@ -157,22 +157,22 @@
                                                 <!-- Construct the message to send via Mandrill. -->
                                                 <script language="js">
                                                     <![CDATA[
-											var requesterName = mc.getProperty('requester.name');
-											var requesterEmail = mc.getProperty('requester.email');
-											var ticketSubject = mc.getProperty('agilezen.text');
-											var ticketCreateDate = mc.getProperty('supportbee.ticketCreateDate');
-											var ticketContent = mc.getProperty('agilezen.details');
-											var assigneeName = mc.getProperty('supportbee.assigneeName');
-											var assigneeEmail = mc.getProperty('supportbee.assigneeEmail');
-											
-											var html = '<h3>Dear ' + requesterName + ',</h3><p>The enhancement request submitted by you on <b>' + ticketCreateDate.split('T')[0] + '</b> at <b>' + ticketCreateDate.split('T')[1].split('Z')[0] + '</b> has been recorded in the system.</p><p>Subject: <b>' + ticketSubject + '</b></p><p>Content: <i>' + ticketContent + '</i></p><p>Our agent will attend to it and get it done as soon as possible. You will be notified by email when the request is completed.</p><p>Should you have any concerns or suggestions on how you want the request to be processed, feel free to contact our agent - <b>' + assigneeName + '</b> via ' + assigneeEmail + '.</p><p>This is an auto-generated email. Please do not reply.</p>';
-											var mailTo = '[{"email":"' + requesterEmail + '", "name":"' + requesterName + '", "type":"to"}]';
-											var mailSubject = 'Request Confirmed [' + ticketSubject + ']';
-											
-											mc.setProperty('mandrill.html', html);
-											mc.setProperty('mandrill.subject', mailSubject);
-											mc.setProperty('mandrill.to', mailTo);
-										]]>
+                                            var requesterName = mc.getProperty('requester.name');
+                                            var requesterEmail = mc.getProperty('requester.email');
+                                            var ticketSubject = mc.getProperty('agilezen.text');
+                                            var ticketCreateDate = mc.getProperty('supportbee.ticketCreateDate');
+                                            var ticketContent = mc.getProperty('agilezen.details');
+                                            var assigneeName = mc.getProperty('supportbee.assigneeName');
+                                            var assigneeEmail = mc.getProperty('supportbee.assigneeEmail');
+
+                                            var html = '<h3>Dear ' + requesterName + ',</h3><p>The enhancement request submitted by you on <b>' + ticketCreateDate.split('T')[0] + '</b> at <b>' + ticketCreateDate.split('T')[1].split('Z')[0] + '</b> has been recorded in the system.</p><p>Subject: <b>' + ticketSubject + '</b></p><p>Content: <i>' + ticketContent + '</i></p><p>Our agent will attend to it and get it done as soon as possible. You will be notified by email when the request is completed.</p><p>Should you have any concerns or suggestions on how you want the request to be processed, feel free to contact our agent - <b>' + assigneeName + '</b> via ' + assigneeEmail + '.</p><p>This is an auto-generated email. Please do not reply.</p>';
+                                            var mailTo = '[{"email":"' + requesterEmail + '", "name":"' + requesterName + '", "type":"to"}]';
+                                            var mailSubject = 'Request Confirmed [' + ticketSubject + ']';
+
+                                            mc.setProperty('mandrill.html', html);
+                                            mc.setProperty('mandrill.subject', mailSubject);
+                                            mc.setProperty('mandrill.to', mailTo);
+                                        ]]>
                                                 </script>
 
                                                 <property name="mandrill.html"

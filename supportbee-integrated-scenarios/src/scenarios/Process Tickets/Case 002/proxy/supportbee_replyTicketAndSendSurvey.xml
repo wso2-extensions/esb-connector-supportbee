@@ -106,39 +106,39 @@
 
                                         <script language="js">
                                             <![CDATA[
-										var tagsArray = mc.getProperty('agilezen.tagsArray');
-										var ticketId = '';
-										
-										if(tagsArray != null && tagsArray != ''){
-											tagsArray = eval("(" + tagsArray + ")");
-											// Proceed only if there are any tags in the array.
-											if(tagsArray.length > 0){
-												for(var i=0; i<tagsArray.length; i++){
-													var tagName = tagsArray[i].name;
-													// Proceed only if the tag name has a ';'
-													if(tagName.indexOf(':') != -1){
-														// If the left part of the ':' of the tag name is equal to 'supportbee-ticket-id' then the right part would be the ticket ID.
-														if(tagName.split(':')[0].toLowerCase() == 'supportbee-ticket-id'){
-															ticketId = tagName.split(':')[1];
-															break;
-														}
-													}
-												}
-											} 
-											// If 'tagsArray' is an object (when there is only one entry) verify the object.
-											else if(tagsArray.hasOwnProperty('name')){
-												var tagName = tagsArray.name;
-												// Proceed only if the tag name has a ';'
-												if(tagName.indexOf(':') != -1){
-													// If the left part of the ':' of the tag name is equal to 'supportbee-ticket-id' then the right part would be the ticket ID.
-													if(tagName.split(':')[0].toLowerCase() == 'supportbee-ticket-id'){
-														ticketId = tagName.split(':')[1];
-													}
-												}
-											}
-										}
-										mc.setProperty('agilezen.supportbee.ticketId', ticketId);
-									]]>
+                                        var tagsArray = mc.getProperty('agilezen.tagsArray');
+                                        var ticketId = '';
+
+                                        if(tagsArray != null && tagsArray != ''){
+                                            tagsArray = eval("(" + tagsArray + ")");
+                                            // Proceed only if there are any tags in the array.
+                                            if(tagsArray.length > 0){
+                                                for(var i=0; i<tagsArray.length; i++){
+                                                    var tagName = tagsArray[i].name;
+                                                    // Proceed only if the tag name has a ';'
+                                                    if(tagName.indexOf(':') != -1){
+                                                        // If the left part of the ':' of the tag name is equal to 'supportbee-ticket-id' then the right part would be the ticket ID.
+                                                        if(tagName.split(':')[0].toLowerCase() == 'supportbee-ticket-id'){
+                                                            ticketId = tagName.split(':')[1];
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            // If 'tagsArray' is an object (when there is only one entry) verify the object.
+                                            else if(tagsArray.hasOwnProperty('name')){
+                                                var tagName = tagsArray.name;
+                                                // Proceed only if the tag name has a ';'
+                                                if(tagName.indexOf(':') != -1){
+                                                    // If the left part of the ':' of the tag name is equal to 'supportbee-ticket-id' then the right part would be the ticket ID.
+                                                    if(tagName.split(':')[0].toLowerCase() == 'supportbee-ticket-id'){
+                                                        ticketId = tagName.split(':')[1];
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        mc.setProperty('agilezen.supportbee.ticketId', ticketId);
+                                    ]]>
                                         </script>
 
                                         <!-- START: Proceed only if the ticket ID was found in the ticket. -->
@@ -179,30 +179,30 @@
                                                             A comment is supposed to have '[Resolution]' tag to be considered a comment. -->
                                                         <script language="js">
                                                             <![CDATA[
-														var storyComments = mc.getProperty('agilezen.commentsArray');	
-														var resolution = '';
-														
-														if(storyComments != null && storyComments != ''){
-															storyComments = eval("(" + storyComments + ")");
-															if(storyComments.length > 0){
-																for(var i=0; i<storyComments.length; i++){
-																	var comment = storyComments[i].text;
-																	if(new java.lang.String(comment).toLowerCase().contains('[resolution]')){
-																		resolution = new java.lang.String(comment).replace("[Resolution]", "").replace("[resolution]", "");
-																		break;
-																	}
-																}
-															}
-															// If 'storyComments' is an object (when there is only one entry) verify the object.
-															else if(storyComments.hasOwnProperty('id')){
-																var comment = storyComments.text;
-																if(new java.lang.String(comment).toLowerCase().contains('[resolution]')){
-																	resolution = new java.lang.String(comment).replace("[Resolution]", "").replace("[resolution]", "");
-																}
-															}
-														}
-														mc.setProperty('ticket.resolution', resolution);
-													]]>
+                                                        var storyComments = mc.getProperty('agilezen.commentsArray');
+                                                        var resolution = '';
+
+                                                        if(storyComments != null && storyComments != ''){
+                                                            storyComments = eval("(" + storyComments + ")");
+                                                            if(storyComments.length > 0){
+                                                                for(var i=0; i<storyComments.length; i++){
+                                                                    var comment = storyComments[i].text;
+                                                                    if(new java.lang.String(comment).toLowerCase().contains('[resolution]')){
+                                                                        resolution = new java.lang.String(comment).replace("[Resolution]", "").replace("[resolution]", "");
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                            // If 'storyComments' is an object (when there is only one entry) verify the object.
+                                                            else if(storyComments.hasOwnProperty('id')){
+                                                                var comment = storyComments.text;
+                                                                if(new java.lang.String(comment).toLowerCase().contains('[resolution]')){
+                                                                    resolution = new java.lang.String(comment).replace("[Resolution]", "").replace("[resolution]", "");
+                                                                }
+                                                            }
+                                                        }
+                                                        mc.setProperty('ticket.resolution', resolution);
+                                                    ]]>
                                                         </script>
 
                                                         <!-- START: ZohoCRM case is considered only when a resolution is available for the ticket. -->
@@ -229,25 +229,25 @@
                                                                         <!-- Retrieve the ZohoCRM case ID from the ticket comments. -->
                                                                         <script language="js">
                                                                             <![CDATA[
-																		var commentsArray = mc.getProperty('supportbee.commentsArray');
-																		var zohocrmCaseId = '';
-																		
-																		if(commentsArray != null && commentsArray != ''){
-																			commentsArray = eval("(" + commentsArray + ")");
-																			for(var i=0; i<commentsArray.length; i++){
-																				var comment = commentsArray[i].content.text;
-																				// Proceed only if the comment text has a ';'
-																				if(comment.indexOf(':') != -1){
-																					// If the left part of the ':' of the comment text is equal to 'zohocrm-case-id' then the right part would be the ZohoCRM Case ID.
-																					if(comment.split(':')[0].toLowerCase() == 'zohocrm-caseid'){
-																						zohocrmCaseId = comment.split(':')[1];
-																						break;
-																					}
-																				}
-																			}
-																		}
-																		mc.setProperty('supportbee.ticket.zohocrmCaseId', zohocrmCaseId);
-																	]]>
+                                                                        var commentsArray = mc.getProperty('supportbee.commentsArray');
+                                                                        var zohocrmCaseId = '';
+
+                                                                        if(commentsArray != null && commentsArray != ''){
+                                                                            commentsArray = eval("(" + commentsArray + ")");
+                                                                            for(var i=0; i<commentsArray.length; i++){
+                                                                                var comment = commentsArray[i].content.text;
+                                                                                // Proceed only if the comment text has a ';'
+                                                                                if(comment.indexOf(':') != -1){
+                                                                                    // If the left part of the ':' of the comment text is equal to 'zohocrm-case-id' then the right part would be the ZohoCRM Case ID.
+                                                                                    if(comment.split(':')[0].toLowerCase() == 'zohocrm-caseid'){
+                                                                                        zohocrmCaseId = comment.split(':')[1];
+                                                                                        break;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        mc.setProperty('supportbee.ticket.zohocrmCaseId', zohocrmCaseId);
+                                                                    ]]>
                                                                         </script>
 
                                                                         <!-- START: Proceed to update the ZohoCRM case, only if the ZohoCRM Case ID was found in the ticket. -->
@@ -257,14 +257,14 @@
                                                                                 <!-- Constuct the xml data to update ZohoCRM case -->
                                                                                 <script language="js">
                                                                                     <![CDATA[
-																				var resolution = mc.getProperty('ticket.resolution');
-																				if(resolution != null && resolution != ''){
-																					var xmlData = '<Contacts> <row no="1"> <FL val="Status">Closed</FL> <FL val="Solution">' + resolution + ' </FL> </row> </Contacts>';
-																				} else {
-																					var xmlData = '<Contacts> <row no="1"> <FL val="Status">Closed</FL> </row> </Contacts>';
-																				}																		
-																				mc.setProperty('zohocrm.xmlData', xmlData);
-																			]]>
+                                                                                var resolution = mc.getProperty('ticket.resolution');
+                                                                                if(resolution != null && resolution != ''){
+                                                                                    var xmlData = '<Contacts> <row no="1"> <FL val="Status">Closed</FL> <FL val="Solution">' + resolution + ' </FL> </row> </Contacts>';
+                                                                                } else {
+                                                                                    var xmlData = '<Contacts> <row no="1"> <FL val="Status">Closed</FL> </row> </Contacts>';
+                                                                                }
+                                                                                mc.setProperty('zohocrm.xmlData', xmlData);
+                                                                            ]]>
                                                                                 </script>
 
                                                                                 <!-- Update the case as closed n ZohoCRM. -->
@@ -360,37 +360,37 @@
                                                                             <then>
                                                                                 <script language="js">
                                                                                     <![CDATA[
-																				var subjectFieldName = mc.getProperty('formstack.subjectFieldName').toLowerCase();																		
-																				var detailsFieldName = mc.getProperty('formstack.detailsFieldName').toLowerCase();																		
-																				var resolutionFieldName = mc.getProperty('formstack.resolutionFieldName').toLowerCase();																	
-																				var fieldsArray = mc.getProperty('formstack.fieldsArray');
-																				
-																				var subjectFieldId = '';
-																				var detailsFieldId = '';
-																				var resolutionFieldId = '';
-																				
-																				if(fieldsArray != null && fieldsArray != ''){
-																					fieldsArray = eval("(" + fieldsArray + ")");
-																					for(var i=0; i<fieldsArray.length; i++){
-																						var labelName = fieldsArray[i].label.toLowerCase();
-																						if(labelName == subjectFieldName){
-																							subjectFieldId = '' + fieldsArray[i].id;
-																						} else if(labelName == detailsFieldName){
-																							detailsFieldId = '' + fieldsArray[i].id;
-																						} else if(labelName == resolutionFieldName){
-																							resolutionFieldId = '' + fieldsArray[i].id;
-																						}
-																						
-																						if(subjectFieldId != '' && detailsFieldId != '' && resolutionFieldId != ''){
-																							break;
-																						}
-																					}
-																				}
-																				
-																				mc.setProperty('formstack.subjectFieldId', subjectFieldId);
-																				mc.setProperty('formstack.detailsFieldId', detailsFieldId);
-																				mc.setProperty('formstack.resolutionFieldId', resolutionFieldId);						
-																			]]>
+                                                                                var subjectFieldName = mc.getProperty('formstack.subjectFieldName').toLowerCase();
+                                                                                var detailsFieldName = mc.getProperty('formstack.detailsFieldName').toLowerCase();
+                                                                                var resolutionFieldName = mc.getProperty('formstack.resolutionFieldName').toLowerCase();
+                                                                                var fieldsArray = mc.getProperty('formstack.fieldsArray');
+
+                                                                                var subjectFieldId = '';
+                                                                                var detailsFieldId = '';
+                                                                                var resolutionFieldId = '';
+
+                                                                                if(fieldsArray != null && fieldsArray != ''){
+                                                                                    fieldsArray = eval("(" + fieldsArray + ")");
+                                                                                    for(var i=0; i<fieldsArray.length; i++){
+                                                                                        var labelName = fieldsArray[i].label.toLowerCase();
+                                                                                        if(labelName == subjectFieldName){
+                                                                                            subjectFieldId = '' + fieldsArray[i].id;
+                                                                                        } else if(labelName == detailsFieldName){
+                                                                                            detailsFieldId = '' + fieldsArray[i].id;
+                                                                                        } else if(labelName == resolutionFieldName){
+                                                                                            resolutionFieldId = '' + fieldsArray[i].id;
+                                                                                        }
+
+                                                                                        if(subjectFieldId != '' && detailsFieldId != '' && resolutionFieldId != ''){
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                }
+
+                                                                                mc.setProperty('formstack.subjectFieldId', subjectFieldId);
+                                                                                mc.setProperty('formstack.detailsFieldId', detailsFieldId);
+                                                                                mc.setProperty('formstack.resolutionFieldId', resolutionFieldId);
+                                                                            ]]>
                                                                                 </script>
 
                                                                                 <!-- If ID of the subject field could be found, update the content of the field with the subject of the ticket. -->
@@ -452,20 +452,20 @@
 
                                                                                 <script language="js">
                                                                                     <![CDATA[
-																				var requesterEmail = mc.getProperty('supportbee.ticket.requesterEmail');								  
-																				var requesterName = mc.getProperty('supportbee.ticket.requesterName');									  
-																				var reportedTime = mc.getProperty('supportbee.ticket.createdTime');								  
-																				var ticketSubject = mc.getProperty('supportbee.ticket.subject');							  
-																				var ticketContent = mc.getProperty('supportbee.ticket.content');							  
-																				var resolution = mc.getProperty('ticket.resolution');								  
-																				var formUrl = mc.getProperty('formstack.formUrl');		
-																				
-																				var mailHTML = '<h3>Dear ' + requesterName + ',</h3><p>We are happy to inform you that, the issue reported by you, on <u>' + reportedTime.split('T')[0] + '</u> at <u>' + reportedTime.split('T')[1].split('Z')[0] + '</u>, was successfully resolved by our agents.</p><p>Subject: <b>' + ticketSubject + '</b></p><p>Issue: <i>' + ticketContent + '</i></p><p>Resolution: <i>' + resolution + "</i></p><p>We would like you to take a survey to give us feedback on how you felt about our service and how we could improve it in future.</p><p><u><a href='" + formUrl + "'>Click here to take the survey</a></u></p> <p></p><p> </p><p> </p><p>This is an auto-generated email. Please do not reply.</p>";
-																				mc.setProperty('mandrill.html', mailHTML);																		
-																				mc.setProperty('mandrill.subject', 'Ticket Resolved [' + ticketSubject + ']');																		
-																				var mailTo = '[{"email": "' + requesterEmail + '", "name": "' + requesterName + '", "type": "to"}]';
-																				mc.setProperty('mandrill.to', mailTo);
-																			]]>
+                                                                                var requesterEmail = mc.getProperty('supportbee.ticket.requesterEmail');
+                                                                                var requesterName = mc.getProperty('supportbee.ticket.requesterName');
+                                                                                var reportedTime = mc.getProperty('supportbee.ticket.createdTime');
+                                                                                var ticketSubject = mc.getProperty('supportbee.ticket.subject');
+                                                                                var ticketContent = mc.getProperty('supportbee.ticket.content');
+                                                                                var resolution = mc.getProperty('ticket.resolution');
+                                                                                var formUrl = mc.getProperty('formstack.formUrl');
+
+                                                                                var mailHTML = '<h3>Dear ' + requesterName + ',</h3><p>We are happy to inform you that, the issue reported by you, on <u>' + reportedTime.split('T')[0] + '</u> at <u>' + reportedTime.split('T')[1].split('Z')[0] + '</u>, was successfully resolved by our agents.</p><p>Subject: <b>' + ticketSubject + '</b></p><p>Issue: <i>' + ticketContent + '</i></p><p>Resolution: <i>' + resolution + "</i></p><p>We would like you to take a survey to give us feedback on how you felt about our service and how we could improve it in future.</p><p><u><a href='" + formUrl + "'>Click here to take the survey</a></u></p> <p></p><p> </p><p> </p><p>This is an auto-generated email. Please do not reply.</p>";
+                                                                                mc.setProperty('mandrill.html', mailHTML);
+                                                                                mc.setProperty('mandrill.subject', 'Ticket Resolved [' + ticketSubject + ']');
+                                                                                var mailTo = '[{"email": "' + requesterEmail + '", "name": "' + requesterName + '", "type": "to"}]';
+                                                                                mc.setProperty('mandrill.to', mailTo);
+                                                                            ]]>
                                                                                 </script>
 
                                                                                 <property name="mandrill.html"

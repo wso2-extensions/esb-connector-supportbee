@@ -20,8 +20,8 @@
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="createTicketsFromSubmissions">
     <script language="js">
         <![CDATA[
-			mc.setProperty('formStack.minTime', new java.text.SimpleDateFormat("yyyy-MM-dd '00:00:00'").format(new java.util.Date()));
-		]]>
+            mc.setProperty('formStack.minTime', new java.text.SimpleDateFormat("yyyy-MM-dd '00:00:00'").format(new java.util.Date()));
+        ]]>
     </script>
 
     <!--List all the submissions of the given bug report for the day. -->

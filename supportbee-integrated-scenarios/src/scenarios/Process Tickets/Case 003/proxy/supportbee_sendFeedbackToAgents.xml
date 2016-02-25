@@ -40,8 +40,8 @@
             <!-- Constructing the 'until' date to 30 days (1 month) from current date. -->
             <script language="js">
                 <![CDATA[
-				mc.setProperty('supportbee.minTime', new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date(new java.util.Date().getTime()-2592000000)));
-			]]>
+                mc.setProperty('supportbee.minTime', new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date(new java.util.Date().getTime()-2592000000)));
+            ]]>
             </script>
 
             <property name="responseString" value="" scope="operation"/>
@@ -138,26 +138,26 @@
                                                         <!-- Verify whether a survey is associated with the ticket. -->
                                                         <script language="js">
                                                             <![CDATA[
-													var repliesArray = mc.getProperty('repliesArray');
-													var surveyId = '';
-													
-													if(repliesArray != null && repliesArray != ''){
-														repliesArray = eval("(" + repliesArray + ")");
-														if(repliesArray.length > 0){
-															for(var i=0; i<repliesArray.length; i++){
-																if(repliesArray[i].hasOwnProperty('content')){
-																	var text = repliesArray[i].content.text;
-																	if(new java.lang.String(text).toLowerCase().startsWith('formstack-survey-id')){
-																		surveyId = text.split(':')[1];
-																		break;
-																	}
-																}
-															}
-														}
-													}
-													
-													mc.setProperty('formstack.surveyId', surveyId);
-												]]>
+                                                    var repliesArray = mc.getProperty('repliesArray');
+                                                    var surveyId = '';
+
+                                                    if(repliesArray != null && repliesArray != ''){
+                                                        repliesArray = eval("(" + repliesArray + ")");
+                                                        if(repliesArray.length > 0){
+                                                            for(var i=0; i<repliesArray.length; i++){
+                                                                if(repliesArray[i].hasOwnProperty('content')){
+                                                                    var text = repliesArray[i].content.text;
+                                                                    if(new java.lang.String(text).toLowerCase().startsWith('formstack-survey-id')){
+                                                                        surveyId = text.split(':')[1];
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    mc.setProperty('formstack.surveyId', surveyId);
+                                                ]]>
                                                         </script>
 
                                                         <!-- START: Proceed to get the submissions of the survey if, there is one associated with the ticket. -->
@@ -231,28 +231,28 @@
                                                                                 <!-- Construct the mail body, subject and 'to' object to send the survey in email. -->
                                                                                 <script language="js">
                                                                                     <![CDATA[
-																	var ticketSubject = mc.getProperty('supportbee.ticketSubject');
-																	var assigneeEmail = mc.getProperty('supportbee.assigneeEmail');
-																	var assigneeName = mc.getProperty('supportbee.assigneeName');																				
-																	var submissionData = mc.getProperty('submissionData');
-																	var userQuestions = mc.getProperty('formstack.questions');
-																	var answerString = '';
-																				
-																	if(submissionData != null && submissionData != ''){
-																		submissionData = eval("(" + submissionData + ")");
-																		userQuestions = eval("(" + userQuestions + ")");
-																		if(submissionData.length > 0 && userQuestions.length > 0){
-																			for(var i=0; i<userQuestions.length; i++){
-																				var index = userQuestions[i].index - 1;
-																				answerString += '<div><p>' +  (i+1) + '. ' + userQuestions[i].question + ' <b><u>' + submissionData[index].value + '</u></b></p></div>';
-																			}
-																		}
-																	}
-																	mc.setProperty('answerString', answerString);
-																	mc.setProperty('mandrill.subject', 'Requester Feedback [' + ticketSubject + ']');
-																	var mailTo = '[{"email": "' + assigneeEmail + '", "name": "' + assigneeName + '", "type": "to"}]';
-																	mc.setProperty('mandrill.to', mailTo);
-																]]>
+                                                                    var ticketSubject = mc.getProperty('supportbee.ticketSubject');
+                                                                    var assigneeEmail = mc.getProperty('supportbee.assigneeEmail');
+                                                                    var assigneeName = mc.getProperty('supportbee.assigneeName');
+                                                                    var submissionData = mc.getProperty('submissionData');
+                                                                    var userQuestions = mc.getProperty('formstack.questions');
+                                                                    var answerString = '';
+
+                                                                    if(submissionData != null && submissionData != ''){
+                                                                        submissionData = eval("(" + submissionData + ")");
+                                                                        userQuestions = eval("(" + userQuestions + ")");
+                                                                        if(submissionData.length > 0 && userQuestions.length > 0){
+                                                                            for(var i=0; i<userQuestions.length; i++){
+                                                                                var index = userQuestions[i].index - 1;
+                                                                                answerString += '<div><p>' +  (i+1) + '. ' + userQuestions[i].question + ' <b><u>' + submissionData[index].value + '</u></b></p></div>';
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    mc.setProperty('answerString', answerString);
+                                                                    mc.setProperty('mandrill.subject', 'Requester Feedback [' + ticketSubject + ']');
+                                                                    var mailTo = '[{"email": "' + assigneeEmail + '", "name": "' + assigneeName + '", "type": "to"}]';
+                                                                    mc.setProperty('mandrill.to', mailTo);
+                                                                ]]>
                                                                                 </script>
 
                                                                                 <property name="mandrill.html"
