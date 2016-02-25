@@ -1,0 +1,60 @@
+Product: Integration tests for WSO2 ESB SupportBee connector
+
+Pre-requisites:
+
+ - Maven 3.x
+ - Java 1.6 or above
+ - The org.wso2.esb.integration.integration-base project is required and It will be found in https://github.com/wso2-extensions/esb-integration-base.
+
+Tested Platform: 
+
+ - Microsoft WINDOWS V-7
+ - UBUNTU 13.04
+ - WSO2 ESB 4.9.0
+
+Steps to follow in setting integration test.
+
+ 1. Compress the ESB as wso2esb-4.9.0.zip and copy that zip file in to location "{SUPPORTBEE_HOME}/repository/".
+
+	If required install the supportbee security certificate (extracted from https://<account-name>.supportbee.com -  refer section 2 for informaion on how to get an account-name) to the following keystores:
+
+		i)  "{SUPPORTBEE_HOME}/src/test/resources/keystores/products"
+
+           		Navigate to the above location from command prompt and execute 'keytool -importcert -file CERT_FILE_NAME -keystore
+           		wso2carbon.jks -alias "supportbee"' in command line to import supportbee certificate in to keystore. Give "wso2carbon" as password.
+           		NOTE : CERT_FILE_NAME is the file name which was extracted from supportbee with  the extension(Eg:supportbee.crt),
+           		change it accordingly. Remove the copied certificate.
+
+        ii) "{SUPPORTBEE_HOME}/repository/resources/security"
+
+           		Navigate to the above location from command prompt and execute 'keytool -importcert -file CERT_FILE_NAME -keystore
+           		client-truststore.jks -alias "supportbee"' in command line to import supportbee certificate in to keystore. Give "wso2carbon" as password.
+           		NOTE : CERT_FILE_NAME is the file name which was extracted from supportbee with  the extension, change it accordingly.
+           		Remove the copied certificate.
+
+
+ 2. Create a supportbee trial account and derive the API Token.
+	i) 	 Using the URL "https://app.supportbee.com/" create an supportbee trial account.
+	ii)	 In the account homepage go to 'Account' -> 'API Token' and retain the API Token for later use.
+	iii) Create at least 2 labels in the SupportBee account. Navigate to 'Admin' panel of the account to create labels.
+
+ 3. Update the supportbee properties file at location "{SUPPORTBEE_HOME}/src/test/resources/artifacts/ESB/connector/config" as below.
+	
+	01)apiUrl               -  Base endpoint URL of the API. Use https://<account-name>.supportbee.com.
+	02) authToken           - Authentication obtained in 2. ii).
+	03)requesterEmail       - Email to add as requester email when creating ticket. Need not be a valid email, but should be in the appropriate format (<username>@<domain>.com).
+	04)text                 - Text to be used as 'text' while creating ticket.
+	05)copiedEmails         - Email address to be used as CC address while creating ticket. Need not be a valid email, but should be in the appropriate format (<username>@<domain>.com).
+	06)subject              - Text to be used as 'subject' while creating ticket.
+	07)requesterName        - Text to be used as 'requester name' while creating ticket.
+	08)html                 - HTML used when creating ticket, reply and comment.
+	09)labelName            - Name of a valid label created in SupportBee account in step 2. iii).
+	10)textReplyMandatory   - Text to be used while creating reply in mandatory case.
+	11)textReplyOptional    - Text to be used while creating reply in optional case.
+	12)textCommentMandatory - Text to be used while creating comment in mandatory case.
+	13)textCommentOptional  - Text to be used while creating comment in optional case.
+	
+	Note: Test suite can be run without making any changes to the provided property file.
+	
+ 4. Navigate to "{SUPPORTBEE_HOME}/" and run the following command.
+          $ mvn clean install
