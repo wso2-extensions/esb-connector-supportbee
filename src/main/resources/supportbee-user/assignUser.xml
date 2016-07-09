@@ -26,7 +26,7 @@
         <payloadFactory media-type="json">
             <format>
                 {
-                "assignment": {
+                "user_assignment": {
                 "user_id": "$1"
                 }
                 }
@@ -38,7 +38,7 @@
         <call>
             <endpoint>
                 <http method="post"
-                      uri-template="{+uri.var.apiUrl}/tickets/{+uri.var.ticketId}/assignments{+uri.var.authToken}"/>
+                      uri-template="{+uri.var.apiUrl}/tickets/{+uri.var.ticketId}/user_assignment{+uri.var.authToken}"/>
             </endpoint>
         </call>
         <!-- Remove custom Headers from the API Response -->
