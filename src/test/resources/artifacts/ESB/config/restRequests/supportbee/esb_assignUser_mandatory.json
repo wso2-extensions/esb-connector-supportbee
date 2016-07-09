@@ -1,16 +1,6 @@
 {
   "apiUrl": "%s(apiUrl)",
   "authToken": "%s(authToken)",
-  "ticketId":
-  %
-  s
-  (
-  ticketIdOptional
-  ),
-  "userId":
-  %
-  s
-  (
-  userId
-  )
+  "ticketId":%s(ticketIdOptional),
+  "userId":%s(userId)
 }

@@ -9,12 +9,12 @@ Pre-requisites:
 Tested Platform: 
 
  - Microsoft WINDOWS V-7
- - UBUNTU 13.04
- - WSO2 ESB 4.9.0
+ - UBUNTU 13.04, 14.04
+ - WSO2 ESB 4.9.0, 5.0.0-BETA
 
 Steps to follow in setting integration test.
 
- 1. Compress the ESB as wso2esb-4.9.0.zip and copy that zip file in to location "{SUPPORTBEE_HOME}/repository/".
+ 1. Compress the ESB as wso2esb-5.0.0-BETA.zip, add "-XX:-UseSplitVerifier" under $JVM_MEM_OPTS into {ESB_HOME}/bin/wso2server.sh" and copy that zip file in to location "{SUPPORTBEE_HOME}/repository/".
 
 	If required install the supportbee security certificate (extracted from https://<account-name>.supportbee.com -  refer section 2 for informaion on how to get an account-name) to the following keystores:
 
