@@ -48,7 +48,7 @@ public class SupportBeeConnectorIntegrationTest extends ConnectorIntegrationTest
 		esbRequestHeadersMap = new HashMap<String, String>();
 		apiRequestHeadersMap = new HashMap<String, String>();
 
-		init("supportbee-connector-1.0.1");
+		init("supportbee-connector-1.0.2-SNAPSHOT");
 
 		esbRequestHeadersMap.put("Content-Type", "application/json");
 		esbRequestHeadersMap.put("Accept", "application/json");
